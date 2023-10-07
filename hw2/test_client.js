@@ -35,67 +35,67 @@ function Validpassword(password) {
   return typesCount >= 3;
 }
 /*-------------------------------------Sign up----------------------------------------------------*/ 
-const data = {
-    name: "123",
-    email: "123@gmail.com",
-    password: "12abAB"
-  };
+// const data = {
+//     name: "1234",
+//     email: "1234@gmail.com",
+//     password: "123abcABC"
+//   };
   
 
-const Postrequest = {
-method: 'POST',
-headers: {
-    'Content-Type': 'application/json',
-    'Request-Date' : new Date().toUTCString()
-},
-body: JSON.stringify(data)
-};
+// const Postrequest = {
+// method: 'POST',
+// headers: {
+//     'Content-Type': 'application/json',
+//     'Request-Date' : new Date().toUTCString()
+// },
+// body: JSON.stringify(data)
+// };
 
-// send POST to http://localhost:3000/users 
-if (Validname(data.name) && Validemail(data.email) && Validpassword(data.password)){
-  fetch(apiurl, Postrequest) 
-  .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Problem in response');
-      }
-  })
-  .then(data => {
-      console.log('sucess response：', data);
-  })
-  .catch(error => {
-      console.error('no problem in response but catch error:', error);
-  });
-}else{
-  console.log("Invalid Input") ;
-}
-
-/*----------------------------------------------Query---------------------------------------------------------------------*/
-// const Getrequest = {
-//   method: 'GET',
-//   headers: {
-//       'Content-Type': 'application/json',
-//       'Request-Date' : new Date().toUTCString()
-//   },
-//   };
- 
-// const userid = 12;  
-
-// // GET request
-// fetch(`${apiurl}?id=${userid}`, Getrequest)
+// // send POST to http://localhost:3000/users 
+// if (Validname(data.name) && Validemail(data.email) && Validpassword(data.password)){
+//   fetch(apiurl, Postrequest) 
 //   .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Problem in response');
-//     }
-//     return response.json();
+//       if (response.ok) {
+//         return response.json();
+//       } else {
+//         throw new Error('Problem in response');
+//       }
 //   })
 //   .then(data => {
-//     console.log('sucess response : ', data);
+//       console.log('sucess response：', data);
 //   })
 //   .catch(error => {
-//     console.error('no problem in response but catch error:', error);
+//       console.error('no problem in response but catch error:', error);
 //   });
+// }else{
+//   console.log("Invalid Input") ;
+// }
+
+/*----------------------------------------------Query---------------------------------------------------------------------*/
+const Getrequest = {
+  method: 'GET',
+  headers: {
+      'Content-Type': 'application/json',
+      'Request-Date' : new Date().toUTCString()
+  },
+  };
+ 
+const userid = 12;  
+
+// GET request
+fetch(`${apiurl}?id=${userid}`, Getrequest)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Problem in response');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('sucess response : ', data);
+  })
+  .catch(error => {
+    console.error('no problem in response but catch error:', error);
+  });
 
 
 
