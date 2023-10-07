@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
-require('dotenv').config() ;
+// require('dotenv').config() ;
 
 // Configure body-parser to parse JSON data
 app.use(bodyParser.json());
