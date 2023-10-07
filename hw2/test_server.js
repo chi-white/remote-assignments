@@ -10,10 +10,8 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: 'kimdb.clhgz7gmuaob.ap-southeast-2.rds.amazonaws.com',
-  // user: process.env.user,
-  // password: process.env.password,
-  user:"admin" ,
-  password: "$King0209" ,
+  user: process.env.user,
+  password: process.env.password,
   database: 'assignment',
 });
 
