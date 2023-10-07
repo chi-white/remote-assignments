@@ -26,30 +26,30 @@ db.connect((err) => {
 
 /*----------------------------Sign Up--------------------------------------------------------------------*/
 
-// app.post('/users', (req, res) => {
-//   const { name, email, password } = req.body;
-//   const request_date = req.headers['request-date'];
-//   const insertUserQuery = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
+app.post('/users', (req, res) => {
+  const { name, email, password } = req.body;
+  const request_date = req.headers['request-date'];
+  const insertUserQuery = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
 
-//   db.query(insertUserQuery, [name, email, password, request_date], (err, results) => {
-//     if (err) {
-//       console.error('Error inserting user: ' + err.stack);
-//       if (err.code === 'ER_DUP_ENTRY'){
-//         return res.status(409).json({ error: 'Email Already Exists' });
-//       }else {
-//         return res.status(400).json({ error: 'Client Error Response' });
-//       }
-//     }
-//     const userId = results.insertId;
-//     const user = {
-//       id: userId,
-//       name,
-//       email,
-//     };
-//     // Return the user information in the response
-//     res.status(200).json({ data: {user, request_date} });
-//   });
-// });
+  db.query(insertUserQuery, [name, email, password, request_date], (err, results) => {
+    if (err) {
+      console.error('Error inserting user: ' + err.stack);
+      if (err.code === 'ER_DUP_ENTRY'){
+        return res.status(409).json({ error: 'Email Already Exists' });
+      }else {
+        return res.status(400).json({ error: 'Client Error Response' });
+      }
+    }
+    const userId = results.insertId;
+    const user = {
+      id: userId,
+      name,
+      email,
+    };
+    // Return the user information in the response
+    res.status(200).json({ data: {user, request_date} });
+  });
+});
 
 /*----------------------------query--------------------------------------------------------------------*/
 app.get('/users', (req, res) => {
