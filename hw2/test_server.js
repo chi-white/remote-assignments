@@ -3,15 +3,17 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
-// require('dotenv').config() ;
+require('dotenv').config() ;
 
 // Configure body-parser to parse JSON data
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: 'kimdb.clhgz7gmuaob.ap-southeast-2.rds.amazonaws.com',
-  user: process.env.user,
-  password: process.env.password,
+  // user: process.env.user,
+  // password: process.env.password,
+  user: "admin",
+  password: "$King0209" ,
   database: 'assignment',
 });
 
