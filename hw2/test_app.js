@@ -10,10 +10,8 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: 'kimdb.clhgz7gmuaob.ap-southeast-2.rds.amazonaws.com',
-  // user: process.env.user,
-  // password: process.env.password,
-  user: "admin",
-  password: "$King0209" ,
+  user: process.env.user,
+  password: process.env.password,
   database: 'assignment',
 });
 
@@ -25,6 +23,11 @@ db.connect((err) => {
   }
   console.log('Connected to the database');
 });
+
+/*----------------------------healthcheck----------------------------------------------------------------*/
+app.get('/healthcheck', (req, res) => {
+  res.send('OK') ;
+})
 
 /*----------------------------Sign Up--------------------------------------------------------------------*/
 
@@ -81,7 +84,7 @@ app.get('/users', (req, res) => {
   });
 });
 
-
+/*-----------------------------listen port------------------------------------------------------*/ 
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
