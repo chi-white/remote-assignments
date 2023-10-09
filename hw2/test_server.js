@@ -10,10 +10,8 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: 'kimdb.clhgz7gmuaob.ap-southeast-2.rds.amazonaws.com',
-  // user: process.env.user,
-  // password: process.env.password,
-  user: "admin",
-  password: "$King0209" ,
+  user: process.env.user,
+  password: process.env.password,
   database: 'assignment',
 });
 
@@ -54,34 +52,34 @@ app.post('/users', (req, res) => {
 });
 
 /*----------------------------query--------------------------------------------------------------------*/
-app.get('/users', (req, res) => {
-  const {id} = req.query;
-  if (isNaN(id) || id<= 0){
-    return res.status(500).json({ error: "id" });
-  }
+// app.get('/users', (req, res) => {
+//   const {id} = req.query;
+//   if (isNaN(id) || id<= 0){
+//     return res.status(500).json({ error: "id" });
+//   }
 
-  const request_date = req.headers['request-date'] ;
+//   const request_date = req.headers['request-date'] ;
 
-  // DB
-  const selectUserQuery = 'SELECT id, name, email FROM user WHERE id = ?';
-  db.query(selectUserQuery, [id, request_date], (err, results) => {
-    if (err) {
-      console.error('Error querying user: ' + err.stack);
-      return res.status(400).json({ error: 'Client Error Response' });
-    }
-    if (results.length === 0) {
-      console.log('User Not Existing');
-      return res.status(403).json({ error: 'User Not Existing'});
-    }
+//   // DB
+//   const selectUserQuery = 'SELECT id, name, email FROM user WHERE id = ?';
+//   db.query(selectUserQuery, [id, request_date], (err, results) => {
+//     if (err) {
+//       console.error('Error querying user: ' + err.stack);
+//       return res.status(400).json({ error: 'Client Error Response' });
+//     }
+//     if (results.length === 0) {
+//       console.log('User Not Existing');
+//       return res.status(403).json({ error: 'User Not Existing'});
+//     }
 
-    const user = results[0];
-    console.log(user);
-    res.status(200).json({ data: {user, "request_date":request_date} });
+//     const user = results[0];
+//     console.log(user);
+//     res.status(200).json({ data: {user, "request_date":request_date} });
     
-  });
-});
+//   });
+// });
 
-
+/*-----------------------------listen port------------------------------------------------------*/ 
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
