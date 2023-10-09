@@ -38,41 +38,41 @@ function Validpassword(password) {
 
 
 /*-------------------------------------Sign up----------------------------------------------------*/ 
-// const data = {
-//     name: "123456",
-//     email: "123456@gmail.com",
-//     password: "123456abcABC"
-//   };
+const data = {
+    "name": "123456",
+    "email": "123456@gmail.com",
+    "password": "123456abcABC"
+  };
   
 
-// const Postrequest = {
-// method: 'POST',
-// headers: {
-//     'Content-Type': 'application/json',
-//     'Request-Date' : new Date().toUTCString()
-// },
-// body: JSON.stringify(data)
-// };
+const Postrequest = {
+method: 'POST',
+headers: {
+    'Content-Type': 'application/json',
+    'Request-Date' : new Date().toUTCString()
+},
+body: JSON.stringify(data)
+}
 
-// // send POST to http://localhost:3000/users 
-// if (Validname(data.name) && Validemail(data.email) && Validpassword(data.password)){
-//   fetch(apiurl, Postrequest) 
-//   .then(response => {
-//       if (response.ok) {
-//         return response.json();
-//       } else {
-//         throw new Error('Problem in response');
-//       }
-//   })
-//   .then(data => {
-//       console.log('sucess response：', data);
-//   })
-//   .catch(error => {
-//       console.error('no problem in response but catch error:', error);
-//   });
-// }else{
-//   console.log("Invalid Input") ;
-// }
+
+if (Validname(data.name) && Validemail(data.email) && Validpassword(data.password)){
+  fetch(apiurl, Postrequest) 
+  .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Problem in response');
+      }
+  })
+  .then(data => {
+      console.log('sucess response：', data);
+  })
+  .catch(error => {
+      console.error('no problem in response but catch error:', error);
+  });
+}else{
+  console.log("Invalid Input") ;
+}
 
 /*----------------------------------------------Query---------------------------------------------------------------------*/
 const Getrequest = {
@@ -102,16 +102,16 @@ const Getrequest = {
 
 /*-------------------------------------healthcheck----------------------------------------------------*/ 
 
-fetch('http://localhost:3000/healthcheck')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Problem in response');
-    }
-    return response.text();
-  })
-  .then(data => {
-    console.log(data); // 打印服务器响应
-  })
-  .catch(error => {
-    console.error('Health check failed:', error);
-  });
+// fetch('http://localhost:3000/healthcheck')
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error('Problem in response');
+//     }
+//     return response.text();
+//   })
+//   .then(data => {
+//     console.log(data); // 打印服务器响应
+//   })
+//   .catch(error => {
+//     console.error('Health check failed:', error);
+//   });

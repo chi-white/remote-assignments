@@ -51,6 +51,7 @@ app.post('/users', (req, res) => {
       name,
       email,
     };
+    
     // Return the user information in the response
     res.status(200).json({ data: {user, request_date} });
   });
