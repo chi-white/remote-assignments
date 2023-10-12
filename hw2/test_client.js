@@ -1,4 +1,5 @@
 apiurl = 'http://localhost:3000/users' ;
+// apiurl = 'http://54.66.160.176:3000/users' ;
 
 /*------------------------------------check function-----------------------------------------------*/ 
 function Validname(name) {
