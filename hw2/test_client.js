@@ -40,9 +40,9 @@ function Validpassword(password) {
 
 /*-------------------------------------Sign up----------------------------------------------------*/ 
 const data = {
-    "name": "1234567891011",
-    "email": "1234567891011@gmail.com",
-    "password": "1234567891011abcABC"
+    "name": "haha",
+    "email": "haha44@gmail.com",
+    "password": "hahaHAHA123"
   };
   
 
