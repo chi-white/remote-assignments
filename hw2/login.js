@@ -1,4 +1,4 @@
-const apiurl = 'http://localhost:3000/users'; 
+const apiurl = 'http://54.66.160.176:3000/users'; 
 const signupForm = document.getElementById('signup-form');
 const usernameInput = document.getElementById('username');
 const emailInput = document.getElementById('email');
@@ -62,7 +62,6 @@ function signup(){
     };
     fetch(apiurl, Postrequest)
       .then(response => {
-        altert("Fuck") ;
         if (response.ok) {
           return response.json();
         } else {
