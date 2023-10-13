@@ -1,4 +1,5 @@
-const apiurl = 'http://54.66.160.176:3000/users'; 
+const userapi = 'api/users';
+const healthapi = 'api/healthcheck'; 
 const signupForm = document.getElementById('signup-form');
 const usernameInput = document.getElementById('username');
 const emailInput = document.getElementById('email');
@@ -60,7 +61,7 @@ function signup(){
       },
       body: JSON.stringify(data)
     };
-    fetch(apiurl, Postrequest)
+    fetch(userapi, Postrequest)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -81,3 +82,20 @@ function signup(){
     alert('Invalid Input. Please check your input fields.');
   }
 };
+
+function healthcheck(){
+  fetch(healthapi)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Problem in response');
+    }
+    return response.text();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Health check failed:', error);
+  });
+}
+
