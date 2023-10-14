@@ -33,10 +33,10 @@ app.get('/healthcheck', (req, res) => {
 
 app.post('/users', (req, res) => {
   const { name, email, password } = req.body;
-  const request_date = req.headers['request-date'];
+  // const request_date = req.headers['request-date'];
   const insertUserQuery = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
 
-  db.query(insertUserQuery, [name, email, password, request_date], (err, results) => {
+  db.query(insertUserQuery, [name, email, password], (err, results) => {
     if (err) {
       console.error('Error inserting user: ' + err.stack);
       if (err.code === 'ER_DUP_ENTRY'){
@@ -53,7 +53,7 @@ app.post('/users', (req, res) => {
     };
 
     // Return the user information in the response
-    res.status(200).json({ data: {user, request_date} });
+    res.status(200).json({ data: {user} });
   });
 });
 
@@ -64,7 +64,7 @@ app.get('/users', (req, res) => {
     return res.status(500).json({ error: "id" });
   }
 
-  const request_date = req.headers['request-date'] ;
+  // const request_date = req.headers['request-date'] ;
 
   // DB
   const selectUserQuery = 'SELECT id, name, email FROM user WHERE id = ?';
@@ -80,7 +80,7 @@ app.get('/users', (req, res) => {
 
     const user = results[0];
     console.log(user);
-    res.status(200).json({ data: {user, "request_date":request_date} });
+    res.status(200).json({ data: {user} });
     
   });
 });

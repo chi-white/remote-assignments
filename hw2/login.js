@@ -71,7 +71,8 @@ function signup(){
       })
       .then(data => {
         console.log('Success response:', data);
-        alert('Signup Successful!');
+        const jsonString = JSON.stringify(data);
+        alert('Signup Successful! '+jsonString);
       })
       .catch(error => {
         console.error('No problem in response but caught error:', error);

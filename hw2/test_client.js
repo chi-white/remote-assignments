@@ -1,5 +1,5 @@
 apiurl = 'http://localhost:3000/users' ;
-// apiurl = 'http://54.66.160.176:3000/users' ;
+// apiurl = 'http://54.66.160.176/api/users' ;
 
 /*------------------------------------check function-----------------------------------------------*/ 
 function Validname(name) {
@@ -40,9 +40,9 @@ function Validpassword(password) {
 
 /*-------------------------------------Sign up----------------------------------------------------*/ 
 const data = {
-    "name": "haha",
-    "email": "haha44@gmail.com",
-    "password": "hahaHAHA123"
+    "name": "haha55",
+    "email": "haha55@gmail.com",
+    "password": "haha55HAHA123"
   };
   
 
