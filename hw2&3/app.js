@@ -40,7 +40,8 @@ app.post('/users', (req, res) => {
     if (err) {
       console.error('Error inserting user: ' + err.stack);
       if (err.code === 'ER_DUP_ENTRY'){
-        return res.status(409).json({ error: 'Email Already Exists' });
+        console.log("email aready exist") ;
+        return res.status(403).json({ error: "Email Already Exists" });
       }else {
         return res.status(400).json({ error: 'Client Error Response' });
       }
@@ -53,7 +54,7 @@ app.post('/users', (req, res) => {
     };
 
     // Return the user information in the response
-    res.status(200).json({ data: {user} });
+    res.status(200).json({ data:user});
   });
 });
 

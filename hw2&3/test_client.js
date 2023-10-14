@@ -41,7 +41,7 @@ function Validpassword(password) {
 /*-------------------------------------Sign up----------------------------------------------------*/ 
 const data = {
     "name": "haha55",
-    "email": "haha55@gmail.com",
+    "email": "haha5581212121888@gmail.com",
     "password": "haha55HAHA123"
   };
   
@@ -59,9 +59,12 @@ body: JSON.stringify(data)
 if (Validname(data.name) && Validemail(data.email) && Validpassword(data.password)){
   fetch(apiurl, Postrequest) 
   .then(response => {
-      if (response.ok) {
+      
+      if (response.ok || response.status===403) {
+        console.log(response.status) ;
         return response.json();
       } else {
+        console.log("test");
         throw new Error('Problem in response');
       }
   })
@@ -69,7 +72,12 @@ if (Validname(data.name) && Validemail(data.email) && Validpassword(data.passwor
       console.log('sucess response：', data);
   })
   .catch(error => {
-      console.error('no problem in response but catch error:', error);
+      console.error(error) ;
+      if (error == 'Email Already Exists'){
+        console.log('Email Already Exists') ;
+      }else{
+        console.log(error) ;
+      }
   });
 }else{
   console.log("Invalid Input") ;

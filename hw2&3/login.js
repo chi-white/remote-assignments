@@ -63,7 +63,7 @@ function signup(){
     };
     fetch(userapi, Postrequest)
       .then(response => {
-        if (response.ok) {
+        if (response.ok || response.status === 403) {
           return response.json();
         } else {
           throw new Error('Problem in response');
@@ -72,11 +72,14 @@ function signup(){
       .then(data => {
         console.log('Success response:', data);
         const jsonString = JSON.stringify(data);
-        alert('Signup Successful! '+jsonString);
+        alert(jsonString);
       })
       .catch(error => {
         console.error('No problem in response but caught error:', error);
-        alert('Signup failed. Please try again later.');
+        if(error === 'Email Already Exists'){
+          alert('Email Already Exists') ;
+        }else{
+          alert('Signup failed. Please try again later.');}
       });
   } else {
     console.log("Invalid Input");
