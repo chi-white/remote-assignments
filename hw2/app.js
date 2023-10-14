@@ -33,14 +33,15 @@ app.get('/healthcheck', (req, res) => {
 
 app.post('/users', (req, res) => {
   const { name, email, password } = req.body;
-  const request_date = req.headers['request-date'];
+  // const request_date = req.headers['request-date'];
   const insertUserQuery = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
 
-  db.query(insertUserQuery, [name, email, password, request_date], (err, results) => {
+  db.query(insertUserQuery, [name, email, password], (err, results) => {
     if (err) {
       console.error('Error inserting user: ' + err.stack);
       if (err.code === 'ER_DUP_ENTRY'){
-        return res.status(409).json({ error: 'Email Already Exists' });
+        console.log("email aready exist") ;
+        return res.status(403).json({ error: "Email Already Exists" });
       }else {
         return res.status(400).json({ error: 'Client Error Response' });
       }
@@ -51,8 +52,9 @@ app.post('/users', (req, res) => {
       name,
       email,
     };
+
     // Return the user information in the response
-    res.status(200).json({ data: {user, request_date} });
+    res.status(200).json({ data:user});
   });
 });
 
@@ -63,11 +65,11 @@ app.get('/users', (req, res) => {
     return res.status(500).json({ error: "id" });
   }
 
-  const request_date = req.headers['request-date'] ;
+  // const request_date = req.headers['request-date'] ;
 
   // DB
   const selectUserQuery = 'SELECT id, name, email FROM user WHERE id = ?';
-  db.query(selectUserQuery, [id, request_date], (err, results) => {
+  db.query(selectUserQuery, [id], (err, results) => {
     if (err) {
       console.error('Error querying user: ' + err.stack);
       return res.status(400).json({ error: 'Client Error Response' });
@@ -79,7 +81,7 @@ app.get('/users', (req, res) => {
 
     const user = results[0];
     console.log(user);
-    res.status(200).json({ data: {user, "request_date":request_date} });
+    res.status(200).json({ data: {user} });
     
   });
 });
