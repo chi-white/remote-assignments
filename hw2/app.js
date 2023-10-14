@@ -68,7 +68,7 @@ app.get('/users', (req, res) => {
 
   // DB
   const selectUserQuery = 'SELECT id, name, email FROM user WHERE id = ?';
-  db.query(selectUserQuery, [id, request_date], (err, results) => {
+  db.query(selectUserQuery, [id], (err, results) => {
     if (err) {
       console.error('Error querying user: ' + err.stack);
       return res.status(400).json({ error: 'Client Error Response' });
